@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mariafer <mariafer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 14:00:13 by mariafer          #+#    #+#             */
-/*   Updated: 2026/06/15 14:00:17 by mariafer         ###   ########.fr       */
+/*   Created: 2026/06/15 15:17:45 by mariafer          #+#    #+#             */
+/*   Updated: 2026/06/15 15:17:46 by mariafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include "gnl.h"
 
-int	ft_read_line(int file, char *s)
+int	main()
 {
-	char	line;
-	size_t		counter;
-
-	if (!*s)
-		return (0);
-	counter = 0;
-	line = read(file, BUFFER_SIZE, counter);
-	while (*s && *s != '\n')
-	{
-		s++;
-		counter++;
-	}
-	return (counter);
-}
-
-char	*get_next_line(int fd)
-{
+	int		fd;
 	char	*line;
-	int		line_counter;
+	int		lines;
 
-	if (!fd || BUFFER_SIZE < 1)
-		return (NULL);
-	line_counter = 0;
-	line_counter = ft_read_line(fd, line);
+	lines = 1;
+	fd = open("README.md", O_RDONLY);
+	if (fd < 0)
+		return (1);
+	while ((line = get_next_line(fd)))
+	{
+		printf("%d->%s\n", lines++, line);
+		free(line);
+	}
+	close(fd);
+	return (0);
 }
