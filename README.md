@@ -61,6 +61,7 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=84 main.c get_next_line.c get_next_line_
 ## Resources
 + [EOF with a C Program](https://www.tutorialspoint.com/article/explain-the-end-of-file-eof-with-a-c-program)
 + [How to use Header File](https://wiki.imindlabs.com.au/cs/lang/c/1_fundamentals/2-dive-into-c/2_dive_into_c/)
++ [Macros in C](https://www.geeksforgeeks.org/c/macros-and-its-types-in-c-cpp/)
 + Peer discussion and testing during the 42 learning process
 
 ## AI Usage
